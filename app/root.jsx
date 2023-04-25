@@ -1,4 +1,5 @@
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import styles from "public/styles/global.css";
 
 export default function App() {
   return (
@@ -17,4 +18,8 @@ export default function App() {
       </body>
     </html>
   );
+}
+
+export function links() {
+  return [{ rel: "stylesheet", href: styles }];
 }
