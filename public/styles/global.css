@@ -6,8 +6,29 @@ body {
 
 h1 {
   font-weight: 800;
+  text-align: center;
+  color: #43036d;
 }
 
 h2 {
   font-weight: 100;
+}
+.styled_link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.input-color {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 50px;
+  height: 50px;
+}
+
+.input-color::-webkit-color-swatch {
+  border-radius: 50%;
+}
+.input-color::-moz-color-swatch {
+  border-radius: 50%;
 }

@@ -8,6 +8,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.12.3",
     "@netlify/functions": "^1.4.0",
     "@remix-run/netlify": "^1.15.0",
     "@remix-run/node": "^1.15.0",

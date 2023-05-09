@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import QRCode from "qrcode";
 import QRColorPick from "./QRColorPick";
-import { ButtonDownload } from "./UI_elements";
+import { ButtonDownload, ButtonSecondary } from "./UI_elements";
+import { Box, TextField } from "@mui/material";
 
 export default function QRGenerator() {
-  const [inputValue, setInputValue] = useState("");
-  const [qrCodeDataUrl, setQRCodeDataUrl] = useState<string | null>(null);
+  const [inputValue, setInputValue] = useState("https://qr-code-lab.netlify.app/");
+  const [qrCodeDataUrl, setQRCodeDataUrl] = useState<string>("https://qr-code-lab.netlify.app/");
   const [inputColorDark, setInputColorDark] = useState("#000000");
   const [inputColorLight, setInputColorLight] = useState("#ffffff");
   const [imageFormat, setImageFormat] = useState<"image/png" | "image/jpeg" | "image/webp">("image/jpeg");
@@ -42,24 +43,35 @@ export default function QRGenerator() {
   }, [imageFormat]);
 
   return (
-    <div>
-      <h2>Insert a link here:</h2>
-      <input type='text' value={inputValue} onChange={e => setInputValue(e.target.value)} />
-      <button type='button' onClick={handleGenerateQRCode}>
-        Generate QR Code
-      </button>
-      {qrCodeDataUrl && (
-        <div>
-          <QRColorPick
-            qrCodeDataUrl={qrCodeDataUrl}
-            inputColorDark={inputColorDark}
-            inputColorLight={inputColorLight}
-            handleColorPick={handleColorPick}
-            handleFormatPick={handleFormatPick}
-          />
-          <ButtonDownload href={qrCodeDataUrl} name='qrcode' text='Download' />
-        </div>
-      )}
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        textAlign: "center",
+        flexDirection: "column",
+      }}
+    >
+      {/* <h2>Insert a link here:</h2> */}
+      <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+        <TextField
+          type='text'
+          variant='outlined'
+          label='Insert a link here'
+          onChange={e => setInputValue(e.target.value)}
+          sx={{ minWidth: "300px" }}
+        />
+        <ButtonSecondary click={handleGenerateQRCode}>Generate QR Code</ButtonSecondary>
+      </Box>
+
+      <QRColorPick
+        qrCodeDataUrl={qrCodeDataUrl}
+        inputColorDark={inputColorDark}
+        inputColorLight={inputColorLight}
+        handleColorPick={handleColorPick}
+        handleFormatPick={handleFormatPick}
+      />
+      <ButtonDownload href={qrCodeDataUrl} name='qrcode' text='Download' />
+    </Box>
   );
 }

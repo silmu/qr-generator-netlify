@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Paper, Grid } from "@mui/material";
+import { PaperMUI } from "./UI_elements";
 
 interface QRColorPickProps {
   qrCodeDataUrl: string;
@@ -16,28 +18,57 @@ export default function QRColorPick({
   handleFormatPick,
 }: QRColorPickProps) {
   return (
-    <>
-      <div>
+    <PaperMUI>
+      <Paper elevation={3} sx={{ p: 2, width: "fit-content" }}>
         <img src={qrCodeDataUrl} alt='QR code' />
-      </div>
-      <div>
-        <input type='color' name='dark' value={inputColorDark} onChange={e => handleColorPick(e)}></input>
-        <input type='color' name='light' value={inputColorLight} onChange={e => handleColorPick(e)}></input>
-      </div>
-      <div>
-        <label>
-          <input type='radio' name='format' value='image/jpeg' onChange={e => handleFormatPick(e)} />
-          jpeg
-        </label>
-        <label>
-          <input type='radio' name='format' value='image/png' onChange={e => handleFormatPick(e)} />
-          png
-        </label>
-        <label>
-          <input type='radio' name='format' value='image/webp' onChange={e => handleFormatPick(e)} />
-          webp
-        </label>
-      </div>
-    </>
+      </Paper>
+      <Grid container spacing={2} sx={{ marginTop: 0 }}>
+        <Grid item xs={6}>
+          <label htmlFor='dark'>Main color</label>
+          <div>
+            <input
+              className='input-color'
+              type='color'
+              name='dark'
+              value={inputColorDark}
+              onChange={e => handleColorPick(e)}
+            ></input>
+          </div>
+        </Grid>
+
+        <Grid item xs={6}>
+          <label htmlFor='dark'>Background color</label>
+          <div>
+            <input
+              className='input-color'
+              type='color'
+              name='light'
+              value={inputColorLight}
+              onChange={e => handleColorPick(e)}
+            ></input>
+          </div>
+        </Grid>
+      </Grid>
+      <Grid container sx={{ marginTop: 0, marginBottom: 2 }}>
+        <Grid item xs={4}>
+          <label>
+            <input type='radio' name='format' value='image/jpeg' onChange={e => handleFormatPick(e)} />
+            jpeg
+          </label>
+        </Grid>
+        <Grid item xs={4}>
+          <label>
+            <input type='radio' name='format' value='image/png' onChange={e => handleFormatPick(e)} />
+            png
+          </label>
+        </Grid>
+        <Grid item xs={4}>
+          <label>
+            <input type='radio' name='format' value='image/webp' onChange={e => handleFormatPick(e)} />
+            webp
+          </label>
+        </Grid>
+      </Grid>
+    </PaperMUI>
   );
 }
