@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from "react";
 import QRCode from "qrcode";
+import QRColorPick from "./QRColorPick";
+import { ButtonDownload } from "./UI_elements";
 
 export default function QRGenerator() {
   const [inputValue, setInputValue] = useState("");
   const [qrCodeDataUrl, setQRCodeDataUrl] = useState<string | null>(null);
-  const [inputColorDark, setInputColorDark] = useState("#000");
+  const [inputColorDark, setInputColorDark] = useState("#000000");
   const [inputColorLight, setInputColorLight] = useState("#ffffff");
   const [imageFormat, setImageFormat] = useState<"image/png" | "image/jpeg" | "image/webp">("image/jpeg");
 
   const handleGenerateQRCode = async () => {
-    const dataUrl = await QRCode.toDataURL(inputValue, {
-      color: { dark: inputColorDark, light: inputColorLight },
-      type: imageFormat,
-    });
-    setQRCodeDataUrl(dataUrl);
+    // Only generate QR if string was input
+    if (inputValue) {
+      const dataUrl = await QRCode.toDataURL(inputValue, {
+        color: { dark: inputColorDark, light: inputColorLight },
+        type: imageFormat,
+      });
+      setQRCodeDataUrl(dataUrl);
+    }
   };
 
   const handleColorPick = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,8 +38,8 @@ export default function QRGenerator() {
   };
 
   useEffect(() => {
-    // handleGenerateQRCode();
-  }, []);
+    handleGenerateQRCode();
+  }, [imageFormat]);
 
   return (
     <div>
@@ -45,34 +50,14 @@ export default function QRGenerator() {
       </button>
       {qrCodeDataUrl && (
         <div>
-          <div>
-            <img src={qrCodeDataUrl} alt='QR code' />
-          </div>
-          <div>
-            <input type='color' name='dark' value={inputColorDark} onChange={e => handleColorPick(e)}></input>
-            <input type='color' name='light' value={inputColorLight} onChange={e => handleColorPick(e)}></input>
-          </div>
-          <div>
-            <label>
-              <input type='radio' name='format' value='image/jpeg' onChange={e => handleFormatPick(e)} />
-              jpeg
-            </label>
-            <label>
-              <input type='radio' name='format' value='image/png' onChange={e => handleFormatPick(e)} />
-              png
-            </label>
-            <label>
-              <input type='radio' name='format' value='image/webp' onChange={e => handleFormatPick(e)} />
-              webp
-            </label>
-          </div>
-          <div>
-            <button>
-              <a href={qrCodeDataUrl} download='qrcode'>
-                Download
-              </a>
-            </button>
-          </div>
+          <QRColorPick
+            qrCodeDataUrl={qrCodeDataUrl}
+            inputColorDark={inputColorDark}
+            inputColorLight={inputColorLight}
+            handleColorPick={handleColorPick}
+            handleFormatPick={handleFormatPick}
+          />
+          <ButtonDownload href={qrCodeDataUrl} name='qrcode' text='Download' />
         </div>
       )}
     </div>
