@@ -28,19 +28,16 @@ export default function QRGenerator() {
     } else {
       setInputColorLight(e.target.value);
     }
-    handleGenerateQRCode();
   };
 
   const handleFormatPick = (e: React.ChangeEvent<HTMLInputElement>) => {
     const format = e.target.value as "image/png" | "image/jpeg" | "image/webp";
-    console.log(format);
     setImageFormat(format);
-    handleGenerateQRCode();
   };
 
   useEffect(() => {
     handleGenerateQRCode();
-  }, [imageFormat]);
+  }, [imageFormat, inputColorDark, inputColorLight]);
 
   return (
     <Box
@@ -52,7 +49,6 @@ export default function QRGenerator() {
         flexDirection: "column",
       }}
     >
-      {/* <h2>Insert a link here:</h2> */}
       <Box sx={{ display: "flex", flexWrap: "wrap" }}>
         <TextField
           type='text'
