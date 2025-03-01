@@ -1,7 +1,7 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;400;800&display=swap');
 
 body {
-  font-family: "JetBrains Mono", monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 h1 {
@@ -20,15 +20,37 @@ h2 {
 
 .input-color {
   background-color: transparent;
-  border: none;
+  border: 1px solid black;
   outline: none;
   width: 50px;
   height: 50px;
+  clip-path: inset(0 round 10%);
 }
 
 .input-color::-webkit-color-swatch {
-  border-radius: 50%;
+  border: 1px solid black;
+  clip-path: inset(0 round 10%);
 }
+
 .input-color::-moz-color-swatch {
-  border-radius: 50%;
+  border: 1px solid black;
+  clip-path: inset(0 round 10%);
+}
+
+.banner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+.responsive-banner {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .responsive-banner {
+    width: 50%;
+    max-width: 400px;
+  }
 }

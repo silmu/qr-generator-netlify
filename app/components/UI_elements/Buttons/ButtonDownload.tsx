@@ -11,8 +11,6 @@ interface ButtonDownloadProps {
 
 export default function ButtonDownload({ href, name, text }: ButtonDownloadProps) {
   const ColorButtonMUI = styled(Button)<ButtonProps>(({ theme }) => ({
-    // color: theme.palette.getContrastText(purple[500]),
-    // backgroundColor: purple[600],
     color: purple[500],
     borderColor: purple[500],
     "&:hover": {

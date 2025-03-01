@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Paper, Grid } from "@mui/material";
-import { PaperMUI } from "./UI_elements";
+import React from 'react';
+import { Grid, Box, Typography } from '@mui/material';
+import { PaperMUI } from './UI_elements';
 
 interface QRColorPickProps {
   qrCodeDataUrl: string;
@@ -19,56 +19,55 @@ export default function QRColorPick({
 }: QRColorPickProps) {
   return (
     <PaperMUI>
-      <Paper elevation={3} sx={{ p: 2, width: "fit-content" }}>
-        <img src={qrCodeDataUrl} alt='QR code' />
-      </Paper>
-      <Grid container spacing={2} sx={{ marginTop: 0 }}>
-        <Grid item xs={6}>
-          <label htmlFor='dark'>Main color</label>
-          <div>
-            <input
-              className='input-color'
-              type='color'
-              name='dark'
-              value={inputColorDark}
-              onChange={e => handleColorPick(e)}
-            ></input>
-          </div>
+      <Box sx={{ marginRight: 2 }}>
+        <Grid container spacing={3} sx={{ marginBottom: 1, marginTop: 1 }}>
+          <Grid item xs={12} sm={6}>
+            <Box>
+              <input className='input-color' type='color' name='dark' value={inputColorDark} onChange={e => handleColorPick(e)} />
+            </Box>
+            <Typography variant='subtitle2' gutterBottom>
+              Main Color
+            </Typography>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Box>
+              <input className='input-color' type='color' name='light' value={inputColorLight} onChange={e => handleColorPick(e)} />
+              <Typography variant='subtitle2' gutterBottom>
+                Background Color
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
 
-        <Grid item xs={6}>
-          <label htmlFor='dark'>Background color</label>
-          <div>
-            <input
-              className='input-color'
-              type='color'
-              name='light'
-              value={inputColorLight}
-              onChange={e => handleColorPick(e)}
-            ></input>
-          </div>
-        </Grid>
-      </Grid>
-      <Grid container sx={{ marginTop: 0, marginBottom: 2 }}>
-        <Grid item xs={4}>
-          <label>
-            <input type='radio' name='format' value='image/jpeg' onChange={e => handleFormatPick(e)} />
-            jpeg
-          </label>
-        </Grid>
-        <Grid item xs={4}>
-          <label>
-            <input type='radio' name='format' value='image/png' onChange={e => handleFormatPick(e)} />
-            png
-          </label>
-        </Grid>
-        <Grid item xs={4}>
-          <label>
-            <input type='radio' name='format' value='image/webp' onChange={e => handleFormatPick(e)} />
-            webp
-          </label>
-        </Grid>
-      </Grid>
+        <Box sx={{ width: '100%' }}>
+          <Grid container justifyContent='center' spacing={2}>
+            <Grid item>
+              <label style={{ display: 'flex', alignItems: 'center' }}>
+                <input type='radio' name='format' value='image/jpeg' onChange={handleFormatPick} style={{ marginRight: '8px' }} />
+                JPEG
+              </label>
+            </Grid>
+            <Grid item>
+              <label style={{ display: 'flex', alignItems: 'center' }}>
+                <input type='radio' name='format' value='image/png' onChange={handleFormatPick} style={{ marginRight: '8px' }} />
+                PNG
+              </label>
+            </Grid>
+            <Grid item>
+              <label style={{ display: 'flex', alignItems: 'center' }}>
+                <input type='radio' name='format' value='image/webp' onChange={handleFormatPick} style={{ marginRight: '8px' }} />
+                WEBP
+              </label>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+
+      {/* QR Code Preview (Right on Desktop, Bottom on Mobile) */}
+      <PaperMUI>
+        <Box>{qrCodeDataUrl && <img src={qrCodeDataUrl} alt='QR Code' style={{ maxWidth: '100%', maxHeight: '300px' }} />}</Box>
+      </PaperMUI>
     </PaperMUI>
   );
 }
