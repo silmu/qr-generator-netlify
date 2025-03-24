@@ -12,9 +12,9 @@ export const meta = () => {
     {
       name: 'keywords',
       content:
-        'free QR code generator, online QR code generator, canva QR code, canva QR code generator, the QR code generator, pdf QR code generator, adobe QR code, create QR code, qr code generator free, free online qr code generator, qr code generator transparent background, qrcodemonkey, kostenloser qr code generator, static qr code, bulk qr code generator, link shortener',
+        'color QR, colour QR, color QR code, colour QR code, QR lab, free color QR, free colour QR, free color QR code, free colour QR code, free QR code generator, download QR code, download qr code as png, online QR code generator, canva QR code, canva QR code generator, the QR code generator, png QR code generator, create QR code, qr code generator free, free online qr code generator, qr code generator transparent background, qrcodemonkey, kostenloser qr code generator, static qr code, bulk qr code generator, link shortener',
     },
-    { property: 'og:title', content: 'Free QR Code Generator | Create QR Codes Online' },
+    { property: 'og:title', content: 'Free Online QR Code Generator with Custom Colors | Download as PNG/JPG' },
     { property: 'og:description', content: 'Easily generate and customize QR codes for free. Download instantly, no sign-up required.' },
     { property: 'og:image', content: 'https://qr-code-lab.netlify.app/images/qr-preview.png' },
     { property: 'og:url', content: 'https://qr-code-lab.netlify.app/' },
